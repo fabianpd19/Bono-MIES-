@@ -1,6 +1,3 @@
-from typing_extensions import Self
-
-
 class persona:
     '''
     Clase para poder determinar cada uno de los datos detalladamente de cada uno
@@ -81,3 +78,14 @@ class personaBajosRecursos (persona):
     '''
     def __init__(self, nombre, nombre2, apellido, apellido2, ciudad, provincia, cedula, edad):
         super().__init__(nombre, nombre2, apellido, apellido2, ciudad, provincia, cedula, edad)
+
+if __name__ == '__main__':
+    test=persona('nombre','nomb2','apellido','apellido2','ciudad','provincia','cedula',1231)
+    print(test.nombre)
+    print(test.nombre2)
+    print(test.apellido)
+    print(test.apellido2)
+    print(test.ciudad)
+    print(test.provincia)
+    print(test.cedula)
+    print(test.edad)
