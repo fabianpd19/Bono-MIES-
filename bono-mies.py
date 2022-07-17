@@ -1,3 +1,11 @@
+from inspect import getgeneratorlocals
+import tkinter
+from tkinter import*
+from tkinter import ttk
+from tkinter import messagebox
+from uuid import getnode
+import pymongo
+
 class persona:
     '''
     Clase para poder determinar cada uno de los datos detalladamente de cada uno
@@ -41,7 +49,9 @@ class persona:
         self.cedula=cedula
         self.edad=edad
     
-    def registro (self):
+    def registro (self, user, password):
+        self.user=user
+        self.password=password
         pass
 
 class personaDiscapacidad (persona):
@@ -79,35 +89,103 @@ class personaBajosRecursos (persona):
     def __init__(self, nombre, nombre2, apellido, apellido2, ciudad, provincia, cedula, edad):
         super().__init__(nombre, nombre2, apellido, apellido2, ciudad, provincia, cedula, edad)
 
+def mostrarTabla():
+    pass
+
+def all_Information_admin ():
+    ventana=tkinter.Tk()
+    ventana.geometry("1200x720")
+    tabla=ttk.Treeview(ventana, columns=4)
+    tabla.grid(row=4, column=0, columnspan=4)
+    tabla.heading("#0", text="ID")
+    tabla.heading("#1", text="nombre")
+    ventana.mainloop()
+
+def agregarInfoMongoVentana():
+    ventana = tkinter.Tk()
+    ventana.geometry("500x500")
+    ingresoTkM=tkinter.Label(ventana, text="--Ingrese sus datos--\n")
+    ingresoTkM.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Nombre:")
+    mostrarTkMessage.pack()
+    nombreTk = tkinter.Entry(ventana)
+    nombreTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Segundo nombre:")
+    mostrarTkMessage.pack()
+    nombre2Tk = tkinter.Entry(ventana)
+    nombre2Tk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Apellido:")
+    mostrarTkMessage.pack()
+    apellidoTk = tkinter.Entry(ventana)
+    apellidoTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Segundo apellido:")
+    mostrarTkMessage.pack()
+    apellido2Tk = tkinter.Entry(ventana)
+    apellido2Tk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Ciudad:")
+    mostrarTkMessage.pack()
+    ciudadTk = tkinter.Entry(ventana)
+    ciudadTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Provincia:")
+    mostrarTkMessage.pack()
+    provinciaTk = tkinter.Entry(ventana)
+    provinciaTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Cedula:")
+    mostrarTkMessage.pack()
+    cedulaTk = tkinter.Entry(ventana)
+    cedulaTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Edad:")
+    mostrarTkMessage.pack()
+    edadTk = tkinter.Entry(ventana)
+    edadTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="Género:")
+    mostrarTkMessage.pack()
+    generoTk = tkinter.Entry(ventana)
+    generoTk.pack()
+    mostrarTkMessage=tkinter.Label(ventana, text="\n")
+    mostrarTkMessage.pack()
+    def getDatos ():
+        getNombre=nombreTk.get()
+        print(getNombre)
+        getNombre2=nombre2Tk.get()
+        print(getNombre2)
+        getApellido=apellidoTk.get()
+        print(getApellido)
+        getApellido2=apellido2Tk.get()
+        print(getApellido2)
+        getCiudad=ciudadTk.get()
+        print(getCiudad)
+        getProvincia=provinciaTk.get()
+        print(getProvincia)
+        getCedula=cedulaTk.get()
+        print(getCedula)
+        getEdad=edadTk.get()
+        print(getEdad)
+        getGenero=generoTk.get()
+        print(getGenero)
+        
+    boton= tkinter.Button(ventana, text="Ingresar datos", command=getDatos)
+    boton.pack()
+    ventana.mainloop()
+    ####################################################
+
 if __name__ == '__main__':
-    test=persona('Sebastian','Paul','Rosero','Macías','Los Rios','Babahoyo','123471234',47)
-    print(test.nombre)
-    print(test.nombre2)
-    print(test.apellido)
-    print(test.apellido2)
-    print(test.ciudad)
-    print(test.provincia)
-    print(test.cedula)
-    print(test.edad)
-    print("=======================")
-    print("Personas Discapacidad")
-    personasD=personaDiscapacidad('Ronald','Aarón','Zambrano','Malave','Ambato','Tungurahua','123471234', 45)
-    print(personasD.nombre)
-    print(personasD.nombre2)
-    print(personasD.apellido)
-    print(personasD.apellido2)
-    print(personasD.ciudad)
-    print(personasD.provincia)
-    print(personasD.cedula)
-    print(personasD.edad)
-    print("=======================")
-    print("Personas Discapacidad")
-    personasB=personaBajosRecursos('Alexis','Diego','Espin','Ramirez','Puyo','Pastaza ','125361612', 65)
-    print(personasB.nombre)
-    print(personasB.nombre2)
-    print(personasB.apellido)
-    print(personasB.apellido2)
-    print(personasB.ciudad)
-    print(personasB.provincia)
-    print(personasB.cedula)
-    print(personasB.edad)
+
+    '''Conectar nuestro programa a MongoDb para la base de datos a utilizar.'''
+    myClient = pymongo.MongoClient("mongodb://localhost:27017/")
+    MONGO_BASED = "bono-mies-data"
+    COLECCION = "test"
+    baseDatos=myClient[MONGO_BASED]
+    coleccion = baseDatos [COLECCION]
+
+    '''Ingresar información a MongoDB'''
+    agregarInfoMongoVentana()
+    
+    # ventana = tkinter.Tk()
+    # ventana.geometry("500x500")
+    # mostrarTexto = tkinter.Entry(ventana)
+    # mostrarTexto.pack()
+    # boton= tkinter.Button(ventana, text="Inicio sesion", command = textoTerminal)
+    # boton.pack()
+    # ventana.mainloop()
+
