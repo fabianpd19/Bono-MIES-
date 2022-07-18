@@ -1,4 +1,5 @@
 from inspect import getgeneratorlocals
+from sys import getprofile
 import tkinter
 from tkinter import*
 from tkinter import ttk
@@ -144,26 +145,28 @@ def agregarInfoMongoVentana():
     generoTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="\n")
     mostrarTkMessage.pack()
+
     def getDatos ():
         getNombre=nombreTk.get()
-        print(getNombre)
         getNombre2=nombre2Tk.get()
-        print(getNombre2)
         getApellido=apellidoTk.get()
-        print(getApellido)
         getApellido2=apellido2Tk.get()
-        print(getApellido2)
         getCiudad=ciudadTk.get()
-        print(getCiudad)
         getProvincia=provinciaTk.get()
-        print(getProvincia)
         getCedula=cedulaTk.get()
-        print(getCedula)
         getEdad=edadTk.get()
-        print(getEdad)
         getGenero=generoTk.get()
-        print(getGenero)
-        
+        # print(getNombre)
+        # print(getNombre2)
+        # print(getApellido)
+        # print(getApellido2)
+        # print(getCiudad)
+        # print(getProvincia)
+        # print(getCedula)
+        # print(getEdad)
+        # print(getGenero)
+        datosDic={'nombre': getNombre, 'nombre2': getNombre2, 'apellido': getApellido, 'apellido2':getApellido2, 'ciudad': getCiudad, 'provincia': getProvincia, 'cedula': getCedula, 'edad': 30, 'genero':getGenero}
+        updateDic=coleccion.insert_one(datosDic)
     boton= tkinter.Button(ventana, text="Ingresar datos", command=getDatos)
     boton.pack()
     ventana.mainloop()
