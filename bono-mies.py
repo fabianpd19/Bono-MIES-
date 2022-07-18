@@ -1,5 +1,3 @@
-from inspect import getgeneratorlocals
-from sys import getprofile
 import tkinter
 from tkinter import*
 from tkinter import ttk
