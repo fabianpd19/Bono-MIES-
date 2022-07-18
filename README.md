@@ -1,17 +1,17 @@
-#BONO MIES ⚖
+# BONO MIES ⚖
 >El programa 'bono-mies'es un proyecto en Python que tiene como objetivo entregar una transferencia monetaria a familias que se encuentran en situaciones compliadas, tales como un familiar con discapacidad o en situación de pobreza para impulsar a su movilidad social. 
 
-##Requisitos
+## Requisitos
 Disponer de la librería de `MongoDB` en `Python`.
 ```sh
 pip install pymongo
 ```
 
-##Inicio Sesión
+## Inicio Sesión
 ...
-##Registro
+## Registro
 ...
-##Ingreso de datos
+## Ingreso de datos
 >Apartado en caso de que un usuario no se cuente registrado en el programa.
 
 
