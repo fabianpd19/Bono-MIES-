@@ -12,7 +12,7 @@ pip install pymongo
 ## Registro
 ...
 ## Ingreso de datos
->Apartado en caso de que un usuario no se cuente registrado en el programa.
+>Apartado en caso de que un usuario se encuentre registrado en el programa.
 
 
 Implementación de la interface *Tkinter*, esta es usada como tal para mostrar por pantalla que datos tiene que usar el usuario para tener un control sobre el mismo.

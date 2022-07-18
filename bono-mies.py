@@ -89,9 +89,11 @@ class personaBajosRecursos (persona):
         super().__init__(nombre, nombre2, apellido, apellido2, ciudad, provincia, cedula, edad)
 
 def mostrarTabla():
+    '''Función para acceder a todos los datos que se encuentre dentro de la basee de datos'''
     pass
 
 def all_Information_admin ():
+    '''Mostrar información interna de la base de datos (solo personal autorizado)'''
     ventana=tkinter.Tk()
     ventana.geometry("1200x720")
     tabla=ttk.Treeview(ventana, columns=4)
@@ -101,49 +103,65 @@ def all_Information_admin ():
     ventana.mainloop()
 
 def agregarInfoMongoVentana():
+    '''Recopilar información de los usuarios que se vayan a registrar por primera vez'''
+    '''Crear ventana de la interfaz'''
     ventana = tkinter.Tk()
+    '''Asignación de medidas'''
     ventana.geometry("500x500")
+    '''Texto'''
     ingresoTkM=tkinter.Label(ventana, text="--Ingrese sus datos--\n")
     ingresoTkM.pack()
+    '''Texto'''
     mostrarTkMessage=tkinter.Label(ventana, text="Nombre:")
     mostrarTkMessage.pack()
+    '''Entrada de texto del primer nombre'''
     nombreTk = tkinter.Entry(ventana)
     nombreTk.pack()
+    '''Texto'''
     mostrarTkMessage=tkinter.Label(ventana, text="Segundo nombre:")
     mostrarTkMessage.pack()
+    '''Entrada de texto del segundo nombre'''
     nombre2Tk = tkinter.Entry(ventana)
     nombre2Tk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Apellido:")
     mostrarTkMessage.pack()
+    '''Entrada de texto del primer apellido'''
     apellidoTk = tkinter.Entry(ventana)
     apellidoTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Segundo apellido:")
     mostrarTkMessage.pack()
+    '''Entrada de texto del segundo apellido'''
     apellido2Tk = tkinter.Entry(ventana)
     apellido2Tk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Ciudad:")
     mostrarTkMessage.pack()
+    '''Entrada de texto de la ciudad del usuario'''
     ciudadTk = tkinter.Entry(ventana)
     ciudadTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Provincia:")
     mostrarTkMessage.pack()
+    '''Entrada de texto de la provincia (ciudad) del usuario'''
     provinciaTk = tkinter.Entry(ventana)
     provinciaTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Cedula:")
     mostrarTkMessage.pack()
+    '''Entrada de texto de la cédula de identidad del usuario'''
     cedulaTk = tkinter.Entry(ventana)
     cedulaTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Edad:")
     mostrarTkMessage.pack()
+    '''Entrada de texto de la edad del usuario'''
     edadTk = tkinter.Entry(ventana)
     edadTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="Género:")
     mostrarTkMessage.pack()
+    '''Entrada de texto del genero del usuario'''
     generoTk = tkinter.Entry(ventana)
     generoTk.pack()
     mostrarTkMessage=tkinter.Label(ventana, text="\n")
     mostrarTkMessage.pack()
 
+    '''Función para obtener lasa cadenas de los datos ingresados en la interfaz'''
     def getDatos ():
         getNombre=nombreTk.get()
         getNombre2=nombre2Tk.get()
@@ -163,12 +181,15 @@ def agregarInfoMongoVentana():
         # print(getCedula)
         # print(getEdad)
         # print(getGenero)
+        '''Creación de un diccionario con los datos ingresados'''
         datosDic={'nombre': getNombre, 'nombre2': getNombre2, 'apellido': getApellido, 'apellido2':getApellido2, 'ciudad': getCiudad, 'provincia': getProvincia, 'cedula': getCedula, 'edad': 30, 'genero':getGenero}
+        '''Agregamos nuetro diccionario a nuestra base de datos'''
         updateDic=coleccion.insert_one(datosDic)
+    '''Botón que registra los datos ingresados'''
     boton= tkinter.Button(ventana, text="Ingresar datos", command=getDatos)
     boton.pack()
+    '''Función para que no se cierre nuestra ventana'''
     ventana.mainloop()
-    ####################################################
 
 if __name__ == '__main__':
 
